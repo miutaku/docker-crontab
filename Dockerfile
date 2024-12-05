@@ -3,7 +3,7 @@ FROM alpine:3.12 AS rq-build
 ENV RQ_VERSION=1.0.2
 WORKDIR /root/
 
-RUN apk --update add upx ca-certificates \
+RUN apk add --no-cache upx ca-certificates \
     && ARCH=$(uname -m) \
     && [ "$ARCH" = "x86_64" ] && ARCH="x86_64" \
     && [ "$ARCH" = "arm64" ] && ARCH="aarch64" \
