@@ -7,8 +7,9 @@ RUN apk --update add upx \
     && ARCH=$(uname -m) \
     && [ "$ARCH" = "x86_64" ] && ARCH="x86_64" \
     && [ "$ARCH" = "arm64" ] && ARCH="aarch64" \
-    && wget https://github.com/dflemstr/rq/releases/download/v${RQ_VERSION}/rq-v${RQ_VERSION}-${ARCH}-unknown-linux-musl.tar.gz \
-    && tar -xvf rq-v1.0.2-x86_64-unknown-linux-musl.tar.gz \
+    && FILENAME=rq-v${RQ_VERSION}-${ARCH}-unknown-linux-musl.tar.gz \
+    && wget https://github.com/dflemstr/rq/releases/download/v${RQ_VERSION}/${FILENAME} \
+    && tar -xvf ${FILENAME} \
     && upx --brute rq
 
 FROM library/docker:stable
